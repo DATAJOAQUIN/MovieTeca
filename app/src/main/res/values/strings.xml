@@ -13,10 +13,10 @@
     <string name="home_second">Home Second</string>
 
     <string name="settings">Configuración</string>
-    <string name="sort_criteria_key">sortKey</string>
+    <string name="sort_criteria_key">sorting</string>
     <string name="top_rated_criteria">Más valorados</string>
     <string name="top_rated_criteria_retrofit">más_valorados</string>
-    <string name="popular_criteria">Más populares</string>
+    <string name="popular_criteria">popular</string>
     <string name="popular_criteria_retrofit">popular</string>
     <string name="favorites_criteria">Favoritos</string>
     <string name="sort_criteria">Criterio de orden</string>

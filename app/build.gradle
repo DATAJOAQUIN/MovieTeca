@@ -21,6 +21,11 @@ android {
         }
     }
 
+    buildTypes.each{
+        it.buildConfigField 'String', 'THE_MOVIE_DB_API_TOKEN', MyTheMovieDBApiToken
+    }
+
+
 }
 
 dependencies {
@@ -36,15 +41,12 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-    //Picasso
-    implementation 'com.squareup.picasso:picasso:2.71828'
 
     //Retrofit Dependencies
     implementation 'com.squareup.retrofit2:retrofit:2.8.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.8.1'
 
-    //ButterKnife
-    implementation 'com.jakewharton:butterknife:10.2.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+    implementation 'org.jetbrains:annotations-java5:15.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
 }
