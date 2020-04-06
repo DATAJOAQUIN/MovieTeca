@@ -2,14 +2,37 @@
     <string name="app_name">MovieTeca</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_title">MovieTeca</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Configuración</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-
+    <string name="menu_home">Películas</string>
+    <string name="menu_gallery">Cerca de ti</string>
+    <string name="menu_slideshow">Sobre</string>
     <string name="home_second">Home Second</string>
+
+    <string name="settings">Configuración</string>
+    <string name="sort_criteria_key">sortKey</string>
+    <string name="top_rated_criteria">Más valorados</string>
+    <string name="top_rated_criteria_retrofit">más_valorados</string>
+    <string name="popular_criteria">Más populares</string>
+    <string name="popular_criteria_retrofit">popular</string>
+    <string name="favorites_criteria">Favoritos</string>
+    <string name="sort_criteria">Criterio de orden</string>
+    <string name="title_activity_movie_detail">Detalle de Película</string>
+    <string name="internet_dialog_message">Debes conectarte al wifi para ver los resultados</string>
+    <string name="inter_dialog_positive_button_text">Conectarse al WIFI</string>
+    <string name="internet_dialog_negative_button_text">Salir</string>
+    <string name="written_by">Escrito por</string>
+    <string name="reviews">Críticas:</string>
+    <string name="trailers">Trailers</string>
+    <string name="added_to_fav">Añadido a Favoritos</string>
+    <string name="removed_from_fav">Borrado de  favoritos</string>
+    <string name="wifi_enabled">Wifi activado!</string>
+    <string name="mobile_data">Datos de móvil activados!</string>
+    <string name="no_internet">Sin conexión a  Internet!</string>
+    <string name="refresh">Actualiza si no ves los datos!</string>
+    <string name="connect_refresh">Conecta y actualiza!</string>
+    <string name="please_connect_to_internet">No hay conexión a internet</string>
 </resources>
