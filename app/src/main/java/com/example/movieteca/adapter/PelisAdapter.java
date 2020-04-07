@@ -51,16 +51,14 @@ public class PelisAdapter extends BaseAdapter {
         ImageView imageView;
         TextView titulo;
 
-
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) parent.getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            cardView= inflater.inflate(R.layout.movie_card ,parent, false);
-            return cardView;
-        } else {
-            cardView = convertView;
-            imageView = convertView.findViewById(R.id.poster_iv);
-            titulo=convertView.findViewById(R.id.title_tv);
+            cardView = inflater.inflate(R.layout.movie_card, parent, false);
+        }else{
+            cardView = convertView;}
+            imageView = cardView.findViewById(R.id.poster_iv);
+            titulo=cardView.findViewById(R.id.title_tv);
             titulo.setText(movie.getTitle());
             String url = new StringBuilder()
                     .append(BASE_POSTER_URL)
@@ -73,9 +71,6 @@ public class PelisAdapter extends BaseAdapter {
                     .error(R.mipmap.ic_launcher)
                     .into(imageView);
             return cardView;
-        }
-
-
 
     }
 

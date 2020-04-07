@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
         }
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        gridView= root.findViewById(R.id.movies_grid_view);
+        gridView= root.findViewById(R.id.movies_recycler_view);
         adapter=new PelisAdapter(root.getContext(),movieList);
         gridView.setAdapter(adapter);
 
@@ -61,6 +61,6 @@ public class HomeFragment extends Fragment {
         SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(getContext());
         String sortingOrder = "popular";
-        moviesTask.execute("top_rated");
+        moviesTask.execute("popular");
     }
 }
