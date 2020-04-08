@@ -22,7 +22,7 @@
     <dimen name="user_photo_height">120dp</dimen>
     <dimen name="user_name_size">18sp</dimen>
     <dimen name="margin_size">14dp</dimen>
-    <dimen name="text_size">12sp</dimen>
+    <dimen name="text_size">16sp</dimen>
     <dimen name="left_margin_size">5dp</dimen>
     <dimen name="title_margin_end">64dp</dimen>
     <dimen name="title_margin_right">48dp</dimen>

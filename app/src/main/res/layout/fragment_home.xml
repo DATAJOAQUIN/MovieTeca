@@ -28,23 +28,13 @@
         android:textStyle="bold"
         android:visibility="invisible" />
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:scrollbars="vertical" />
-
-<!--
-    <GridView
-        android:id="@+id/movies_grid_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:verticalSpacing="0dp"
-        android:horizontalSpacing="0dp"
-        android:stretchMode="columnWidth"
-        android:numColumns="auto_fit"/>
--->
 
 
 </RelativeLayout>
