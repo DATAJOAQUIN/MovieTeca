@@ -4,9 +4,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movieteca.R;
 import com.example.movieteca.model.Pelicula;
@@ -14,9 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class PelisAdapter extends BaseAdapter {
-
-
+public class PelisAdapter extends RecyclerView.Adapter<PelisAdapter.PelisHolder> {
 
     private final static String BASE_POSTER_URL = "https://image.tmdb.org/t/p/";
     private final static String IMAGE_SIZE = "w500";
@@ -28,14 +28,35 @@ public class PelisAdapter extends BaseAdapter {
         this.movies = movies;
     }
 
+    @NonNull
     @Override
-    public int getCount() {
-        return movies.size();
+    public PelisHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.movie_card, viewGroup, false);
+
+        return new PelisHolder(view);
     }
 
+
     @Override
-    public Pelicula getItem(int position) {
-        return movies.get(position);
+    public void onBindViewHolder(@NonNull PelisHolder viewHolder, int i) {
+        viewHolder.titulo.setText(movies.get(i).getTitle());
+        String vote = movies.get(i).getVoteAverage();
+        viewHolder.puntuacion.setText(vote);
+
+        ImageView imageView=viewHolder.poster;
+
+        String url = new StringBuilder()
+                .append(BASE_POSTER_URL)
+                .append(IMAGE_SIZE)
+                .append(movies.get(i).getPosterPath().trim()).toString();
+
+        Picasso.with(context)
+                .load(url)
+                .placeholder(R.mipmap.ic_launcher_round)
+                .error(R.mipmap.ic_launcher)
+                .into(imageView);
+
     }
 
     @Override
@@ -43,40 +64,27 @@ public class PelisAdapter extends BaseAdapter {
         return position;
     }
 
-    @SuppressWarnings("StringBufferReplaceableByString")
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        Pelicula movie = getItem(position);
-        View cardView;
-        ImageView imageView;
-        TextView titulo;
-
-        if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) parent.getContext()
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            cardView = inflater.inflate(R.layout.movie_card, parent, false);
-        }else{
-            cardView = convertView;}
-            imageView = cardView.findViewById(R.id.poster_iv);
-            titulo=cardView.findViewById(R.id.title_tv);
-            titulo.setText(movie.getTitle());
-            String url = new StringBuilder()
-                    .append(BASE_POSTER_URL)
-                    .append(IMAGE_SIZE)
-                    .append(movie.getPosterPath().trim()).toString();
-
-            Picasso.with(context)
-                    .load(url)
-                    .placeholder(R.mipmap.ic_launcher_round)
-                    .error(R.mipmap.ic_launcher)
-                    .into(imageView);
-            return cardView;
-
+    public int getItemCount() {
+        return 0;
     }
+
 
     public void clear() {
         if (movies.size() > 0) {
             movies.clear();
+        }
+    }
+
+    public class PelisHolder extends RecyclerView.ViewHolder{
+        public TextView titulo, puntuacion;
+        public ImageView poster;
+
+        public PelisHolder(@NonNull View view) {
+            super(view);
+            titulo = (TextView) view.findViewById(R.id.title);
+            puntuacion = (TextView) view.findViewById(R.id.rating_tv);
+            poster = (ImageView) view.findViewById(R.id.poster_iv);
         }
     }
 }

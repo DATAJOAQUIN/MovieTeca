@@ -6,10 +6,11 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movieteca.R;
 import com.example.movieteca.adapter.PelisAdapter;
@@ -23,7 +24,7 @@ import java.util.Collections;
 public class HomeFragment extends Fragment {
     private static final String KEY_MOVIE = "MOVIE";
     private static final String KEY_MOVIE_LIST = "MOVIE_LIST";
-    private GridView gridView;
+    private RecyclerView recyclerView;
     private ArrayList<Pelicula> movieList;
     private PelisAdapter adapter;
 
@@ -35,9 +36,17 @@ public class HomeFragment extends Fragment {
         }
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        gridView= root.findViewById(R.id.movies_recycler_view);
+        recyclerView= root.findViewById(R.id.recyler_view);
+/*
+        if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 4));
+        }*/
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+
         adapter=new PelisAdapter(root.getContext(),movieList);
-        gridView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
 
         cargarPelis();
 
@@ -63,4 +72,5 @@ public class HomeFragment extends Fragment {
         String sortingOrder = "popular";
         moviesTask.execute("popular");
     }
+
 }
