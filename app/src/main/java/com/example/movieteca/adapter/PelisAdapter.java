@@ -66,7 +66,7 @@ public class PelisAdapter extends RecyclerView.Adapter<PelisAdapter.PelisHolder>
 
     @Override
     public int getItemCount() {
-        return 0;
+        return movies.size();
     }
 
 
@@ -82,7 +82,7 @@ public class PelisAdapter extends RecyclerView.Adapter<PelisAdapter.PelisHolder>
 
         public PelisHolder(@NonNull View view) {
             super(view);
-            titulo = (TextView) view.findViewById(R.id.title);
+            titulo = (TextView) view.findViewById(R.id.title_tv);
             puntuacion = (TextView) view.findViewById(R.id.rating_tv);
             poster = (ImageView) view.findViewById(R.id.poster_iv);
         }

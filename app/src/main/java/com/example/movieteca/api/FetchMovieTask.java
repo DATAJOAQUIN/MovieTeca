@@ -27,7 +27,7 @@ public class FetchMovieTask extends AsyncTask<String,Void, Pelicula[]> {
 
     @Contract("null -> null")
     private Pelicula[] getMoviesFromJson(String movieJsonString) throws JSONException {
-        final String ORIGINAL_TITLE = "original_title";
+        final String TITLE = "title";
         final String POSTER_PATH = "poster_path";
         final String OVERVIEW = "overview";
         final String VOTE_AVERAGE = "vote_average";
@@ -44,7 +44,7 @@ public class FetchMovieTask extends AsyncTask<String,Void, Pelicula[]> {
 
         for (int i = 0; i < jsonArrayMovies.length(); i++) {
             JSONObject object = jsonArrayMovies.getJSONObject(i);
-            movies[i] = new Pelicula(object.getString(ORIGINAL_TITLE),
+            movies[i] = new Pelicula(object.getString(TITLE),
                     object.getString(POSTER_PATH),
                     object.getString(OVERVIEW),
                     object.getString(VOTE_AVERAGE),
@@ -69,6 +69,7 @@ public class FetchMovieTask extends AsyncTask<String,Void, Pelicula[]> {
         Uri uri = Uri.parse(BASE_URL).buildUpon()
                 .appendEncodedPath(params[0])
                 .appendQueryParameter(API_KEY, BuildConfig.THE_MOVIE_DB_API_TOKEN)
+                .appendQueryParameter("language","es-ES")
                 .build();
 
         try {
