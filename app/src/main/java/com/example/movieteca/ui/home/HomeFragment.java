@@ -1,7 +1,6 @@
 package com.example.movieteca.ui.home;
 
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -10,13 +9,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.movieteca.R;
 import com.example.movieteca.adapter.PelisAdapter;
-import com.example.movieteca.api.BuscaPelisTask;
-import com.example.movieteca.api.MiCallback;
+import com.example.movieteca.api.FetchMovieTask;
+import com.example.movieteca.api.MyCallback;
 import com.example.movieteca.model.Pelicula;
 
 import java.util.ArrayList;
@@ -37,13 +36,15 @@ public class HomeFragment extends Fragment {
         }
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
         recyclerView= root.findViewById(R.id.recyler_view);
+/*
         if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
-            recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 2));
+            recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
         } else {
-            recyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 4));
-        }
+            recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 4));
+        }*/
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+
         adapter=new PelisAdapter(root.getContext(),movieList);
         recyclerView.setAdapter(adapter);
 
@@ -53,7 +54,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void cargarPelis(){
-        BuscaPelisTask moviesTask = new BuscaPelisTask(new MiCallback() {
+        FetchMovieTask moviesTask = new FetchMovieTask(new MyCallback() {
             @Override
             public void updateAdapter(Pelicula[] movies) {
 
@@ -62,6 +63,7 @@ public class HomeFragment extends Fragment {
                     Collections.addAll(movieList, movies);
                     adapter.notifyDataSetChanged();
                 }
+
             }
 
         });
@@ -70,4 +72,5 @@ public class HomeFragment extends Fragment {
         String sortingOrder = "popular";
         moviesTask.execute("popular");
     }
+
 }

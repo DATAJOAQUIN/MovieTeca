@@ -40,8 +40,7 @@ public class PelisAdapter extends RecyclerView.Adapter<PelisAdapter.PelisHolder>
 
     @Override
     public void onBindViewHolder(@NonNull PelisHolder viewHolder, int i) {
-        String tituloText = movies.get(i).getTitle();
-        viewHolder.titulo.setText(tituloText);
+        viewHolder.titulo.setText(movies.get(i).getTitle());
         String vote = movies.get(i).getVoteAverage();
         viewHolder.puntuacion.setText(vote);
 
@@ -67,7 +66,7 @@ public class PelisAdapter extends RecyclerView.Adapter<PelisAdapter.PelisHolder>
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        return 0;
     }
 
 
@@ -83,7 +82,7 @@ public class PelisAdapter extends RecyclerView.Adapter<PelisAdapter.PelisHolder>
 
         public PelisHolder(@NonNull View view) {
             super(view);
-            titulo = (TextView) view.findViewById(R.id.title_tv);
+            titulo = (TextView) view.findViewById(R.id.title);
             puntuacion = (TextView) view.findViewById(R.id.rating_tv);
             poster = (ImageView) view.findViewById(R.id.poster_iv);
         }
