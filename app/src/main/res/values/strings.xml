@@ -13,20 +13,14 @@
     <string name="home_second">Home Second</string>
 
     <string name="settings">Configuración</string>
-    <string name="sort_criteria_key">sorting</string>
-    <string name="top_rated_criteria">Más valorados</string>
-    <string name="top_rated_criteria_retrofit">más_valorados</string>
-    <string name="popular_criteria">popular</string>
-    <string name="popular_criteria_retrofit">popular</string>
-    <string name="favorites_criteria">Favoritos</string>
-    <string name="sort_criteria">Criterio de orden</string>
-    <string name="title_activity_movie_detail">Detalle de Película</string>
-    <string name="internet_dialog_message">Debes conectarte al wifi para ver los resultados</string>
-    <string name="inter_dialog_positive_button_text">Conectarse al WIFI</string>
-    <string name="internet_dialog_negative_button_text">Salir</string>
-    <string name="written_by">Escrito por</string>
-    <string name="reviews">Críticas:</string>
-    <string name="trailers">Trailers</string>
+    <string name="description_poster">Poster</string>
+    <string name="pref_sort_key" translatable="false">sorting</string>
+    <string name="pref_sort_label">Ordenar por</string>
+    <string name="pref_sort_popular_label">Más Populares</string>
+    <string name="pref_sort_popular_value" translatable="false">popular</string>
+    <string name="pref_sort_rating_label">Mejor valorados</string>
+    <string name="pref_sort_rating_value" translatable="false">top_rated</string>
+
     <string name="added_to_fav">Añadido a Favoritos</string>
     <string name="removed_from_fav">Borrado de  favoritos</string>
     <string name="wifi_enabled">Wifi activado!</string>
@@ -35,4 +29,6 @@
     <string name="refresh">Actualiza si no ves los datos!</string>
     <string name="connect_refresh">Conecta y actualiza!</string>
     <string name="please_connect_to_internet">No hay conexión a internet</string>
+
+    <string name="reviews">Críticas</string>
 </resources>

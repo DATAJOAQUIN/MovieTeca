@@ -58,12 +58,13 @@ public class HomeFragment extends Fragment {
         adapter=new PelisAdapter(root.getContext(),movieList);
         recyclerView.setAdapter(adapter);
 
+
         cargarPelis();
 
         return root;
     }
 
-    private void cargarPelis(){
+    public void cargarPelis(){
         FetchMovieTask moviesTask = new FetchMovieTask(new MyCallback() {
             @Override
             public void updateAdapter(Pelicula[] movies) {
@@ -83,8 +84,15 @@ public class HomeFragment extends Fragment {
         });
         SharedPreferences preferences =
                 PreferenceManager.getDefaultSharedPreferences(getContext());
-        String sortingOrder = "popular";
-        moviesTask.execute("popular");
+        String sortingOrder = preferences.getString(getString(R.string.pref_sort_key),getString(R.string.pref_sort_popular_value));
+        moviesTask.execute(sortingOrder);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        cargarPelis();
+    }
 }
+
+
