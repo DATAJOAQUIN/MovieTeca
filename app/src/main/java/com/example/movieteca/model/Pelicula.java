@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Pelicula implements Parcelable {
+
+
     private final String title;
     private final String posterPath;
     private final String overview;

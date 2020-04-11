@@ -47,17 +47,14 @@ public class HomeFragment extends Fragment {
 
         recyclerView= root.findViewById(R.id.recyler_view);
 
-
         if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
             recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 2));
         } else {
             recyclerView.setLayoutManager(new GridLayoutManager(root.getContext(), 4));
         }
 
-
         adapter=new PelisAdapter(root.getContext(),movieList);
         recyclerView.setAdapter(adapter);
-
 
         cargarPelis();
 

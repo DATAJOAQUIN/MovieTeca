@@ -12,6 +12,7 @@
     <string name="menu_slideshow">Sobre</string>
     <string name="home_second">Home Second</string>
 
+    <string name="peli_detalle">Detalle Película</string>
     <string name="settings">Configuración</string>
     <string name="description_poster">Poster</string>
     <string name="pref_sort_key" translatable="false">sorting</string>

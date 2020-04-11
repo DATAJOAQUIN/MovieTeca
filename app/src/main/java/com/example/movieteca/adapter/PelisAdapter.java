@@ -1,6 +1,7 @@
 package com.example.movieteca.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.movieteca.PeliDetalleActivity;
 import com.example.movieteca.R;
 import com.example.movieteca.model.Pelicula;
 import com.squareup.picasso.Picasso;
@@ -85,6 +87,20 @@ public class PelisAdapter extends RecyclerView.Adapter<PelisAdapter.PelisHolder>
             titulo = (TextView) view.findViewById(R.id.title_tv);
             puntuacion = (TextView) view.findViewById(R.id.rating_tv);
             poster = (ImageView) view.findViewById(R.id.poster_iv);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos=getAdapterPosition();
+                    if (pos!=RecyclerView.NO_POSITION){
+                        Pelicula itemClicado=movies.get(pos);
+                        Intent intent=new Intent(context, PeliDetalleActivity.class);
+                        intent.putExtra("pelicula",itemClicado);
+                        context.startActivity(intent);
+                        //Toast.makeText(v.getContext(), "Has clicado " + itemClicado.getTitle(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }
     }
 }
