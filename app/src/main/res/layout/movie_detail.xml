@@ -114,9 +114,19 @@
                 android:layout_margin="@dimen/margin_size"
                 android:textSize="@dimen/overview_tv_size" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trailers"
+                android:textStyle="bold"
+                android:textColor="@color/colorBlack"
+                android:layout_margin="@dimen/margin_size"
+                android:textSize="@dimen/text_size" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:scrollbars="vertical"
                 android:id="@+id/trailersRecycleView"
                 android:layout_margin="@dimen/margin_size">
 

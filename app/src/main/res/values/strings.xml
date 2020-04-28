@@ -6,11 +6,12 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Configuración</string>
+    <string name="search_hint">Buscar</string>
 
     <string name="menu_home">Películas</string>
-    <string name="menu_gallery">Cerca de ti</string>
-    <string name="menu_slideshow">Sobre</string>
-    <string name="home_second">Home Second</string>
+    <string name="menu_mapas">Cerca de ti</string>
+    <string name="menu_buscar">Búsqueda</string>
+    <string name="menu_info">Información</string>
 
     <string name="peli_detalle">Detalle Película</string>
     <string name="settings">Configuración</string>
@@ -21,6 +22,8 @@
     <string name="pref_sort_popular_value" translatable="false">popular</string>
     <string name="pref_sort_rating_label">Mejor valorados</string>
     <string name="pref_sort_rating_value" translatable="false">top_rated</string>
+    <string name="pref_sort_favorites_label">Favoritos</string>
+    <string name="pref_sort_favorites_value" translatable="false">favorites</string>
 
     <string name="added_to_fav">Añadido a Favoritos</string>
     <string name="removed_from_fav">Borrado de  favoritos</string>

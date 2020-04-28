@@ -12,7 +12,7 @@
     <dimen name="movie_title_padding">10dp</dimen>
     <dimen name="spinner_width">140dp</dimen>
     <dimen name="spinner_height">80dp</dimen>
-    <dimen name="appbarlayout_height">350dp</dimen>
+    <dimen name="appbarlayout_height">400dp</dimen>
     <dimen name="release_tv_size">24sp</dimen>
     <dimen name="overview_tv_size">18sp</dimen>
     <dimen name="trailer_title_size">16sp</dimen>

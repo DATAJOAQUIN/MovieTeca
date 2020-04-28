@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/linearLayout_id"
-    android:adjustViewBounds="true">
+    android:adjustViewBounds="true" >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -15,11 +15,13 @@
         android:layout_gravity="center"
         android:layout_margin="@dimen/card_margin"
         android:elevation="@dimen/elevation_size"
-        card_view:cardCornerRadius="@dimen/card_movie_radius">
+        card_view:cardCornerRadius="@dimen/card_movie_radius"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -38,8 +40,9 @@
                 android:paddingRight="@dimen/movie_title_padding"
                 android:paddingTop="@dimen/movie_title_padding"
                 android:textColor="@color/colorMovieTitle"
-                android:textSize="@dimen/text_size"
-                android:text="Titulo"/>
+                android:textSize="15sp"
+                android:text="Titulo"
+               />
 
             <ImageView
                 android:id="@+id/star_iv"

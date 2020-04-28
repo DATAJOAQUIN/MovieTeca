@@ -11,22 +11,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+public class BuscaPelisTask extends AsyncTask<String,Void, Pelicula[]> {
+    private final PelisCallback movieTaskCallback;
 
-public class FetchMovieTask extends AsyncTask<String,Void, Pelicula[]> {
-    private final MyCallback movieTaskCallback;
-
-    public FetchMovieTask(MyCallback movieTaskCallback) {
+    public BuscaPelisTask(PelisCallback movieTaskCallback) {
         this.movieTaskCallback = movieTaskCallback;
     }
 
     @Contract("null -> null")
     private Pelicula[] getMoviesFromJson(String movieJsonString) throws JSONException {
+        final String MOVIE_ID="id";
         final String TITLE = "title";
         final String POSTER_PATH = "poster_path";
         final String OVERVIEW = "overview";
@@ -44,7 +38,9 @@ public class FetchMovieTask extends AsyncTask<String,Void, Pelicula[]> {
 
         for (int i = 0; i < jsonArrayMovies.length(); i++) {
             JSONObject object = jsonArrayMovies.getJSONObject(i);
-            movies[i] = new Pelicula(object.getString(TITLE),
+            movies[i] = new Pelicula(
+                    object.getInt(MOVIE_ID),
+                    object.getString(TITLE),
                     object.getString(POSTER_PATH),
                     object.getString(OVERVIEW),
                     object.getString(VOTE_AVERAGE),
@@ -62,59 +58,16 @@ public class FetchMovieTask extends AsyncTask<String,Void, Pelicula[]> {
         final String BASE_URL = "https://api.themoviedb.org/3/movie/";
         final String API_KEY = "api_key";
 
-        HttpURLConnection urlConnection = null;
-        String movieJsonString = null;
-        BufferedReader reader = null;
-
         Uri uri = Uri.parse(BASE_URL).buildUpon()
                 .appendEncodedPath(params[0])
                 .appendQueryParameter(API_KEY, BuildConfig.THE_MOVIE_DB_API_TOKEN)
                 .appendQueryParameter("language","es-ES")
                 .build();
 
-        try {
-            URL url = new URL(uri.toString());
-            urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.connect();
-
-            InputStream inputStream = urlConnection.getInputStream();
-            StringBuilder builder = new StringBuilder();
-            if (inputStream == null) {
-                return null;
-            }
-            reader = new BufferedReader(new InputStreamReader(inputStream));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-
-                builder.append(line + "\n");
-            }
-
-            if (builder.length() == 0) {
-                return null;
-            }
-
-            movieJsonString = builder.toString();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (urlConnection != null) {
-                urlConnection.disconnect();
-            }
-
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+        String jsonString = NetworkRequest.getJsonString(uri);
 
         try {
-            return getMoviesFromJson(movieJsonString);
+            return getMoviesFromJson(jsonString);
         } catch (JSONException e) {
             e.printStackTrace();
         }

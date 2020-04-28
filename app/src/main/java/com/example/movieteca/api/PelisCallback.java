@@ -2,6 +2,6 @@ package com.example.movieteca.api;
 
 import com.example.movieteca.model.Pelicula;
 
-public interface MyCallback {
+public interface PelisCallback {
     void updateAdapter(Pelicula[] movies);
 }

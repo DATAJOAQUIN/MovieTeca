@@ -5,27 +5,40 @@ import android.os.Parcelable;
 
 public class Pelicula implements Parcelable {
 
+    private  int movieId;
+    private  String title;
+    private  String posterPath;
+    private  String overview;
+    private  String voteAverage;
+    private  String releaseDate;
 
-    private final String title;
-    private final String posterPath;
-    private final String overview;
-    private final String voteAverage;
-    private final String releaseDate;
+    public Pelicula() {
+    }
 
-    public Pelicula(String title, String posterPath, String overview, String voteAverage, String releaseDate) {
+    public Pelicula(int movieId, String title, String posterPath, String overview, String voteAverage, String releaseDate) {
+        this.movieId=movieId;
         this.title = title;
         this.posterPath = posterPath;
         this.overview = overview;
         this.voteAverage = voteAverage;
         this.releaseDate = releaseDate;
+
     }
 
     private Pelicula(Parcel parcel) {
+        movieId = parcel.readInt();
         title = parcel.readString();
         posterPath = parcel.readString();
         overview = parcel.readString();
         voteAverage = parcel.readString();
         releaseDate = parcel.readString();
+
+    }
+
+
+
+    public int getMovieId() {
+        return movieId;
     }
 
     public String getTitle() {
@@ -48,6 +61,30 @@ public class Pelicula implements Parcelable {
         return releaseDate;
     }
 
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public void setVoteAverage(String voteAverage) {
+        this.voteAverage = voteAverage;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -55,6 +92,7 @@ public class Pelicula implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(movieId);
         parcel.writeString(title);
         parcel.writeString(posterPath);
         parcel.writeString(overview);
@@ -62,7 +100,7 @@ public class Pelicula implements Parcelable {
         parcel.writeString(releaseDate);
     }
 
-    public static final Parcelable.Creator<Pelicula> CREATOR = new Parcelable.Creator<Pelicula>() {
+    public static final Creator<Pelicula> CREATOR = new Creator<Pelicula>() {
 
         @Override
         public Pelicula createFromParcel(Parcel parcel) {
