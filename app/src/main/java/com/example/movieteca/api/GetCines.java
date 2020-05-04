@@ -1,9 +1,7 @@
-package com.example.movieteca.ui.mapas;
+package com.example.movieteca.api;
 
 import android.net.Uri;
 import android.os.AsyncTask;
-
-import com.example.movieteca.api.NetworkRequest;
 
 import org.json.JSONException;
 

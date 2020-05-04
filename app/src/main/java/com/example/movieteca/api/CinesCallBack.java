@@ -1,4 +1,4 @@
-package com.example.movieteca.ui.mapas;
+package com.example.movieteca.api;
 
 import org.json.JSONException;
 

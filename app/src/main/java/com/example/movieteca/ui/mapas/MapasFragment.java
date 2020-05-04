@@ -17,6 +17,8 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.movieteca.R;
+import com.example.movieteca.api.CinesCallBack;
+import com.example.movieteca.api.GetCines;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -175,7 +177,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback {
         // Posicionar el mapa en una localización y con un nivel de zoom
         LatLng latLng = new LatLng(mLatitude, mLongitude);
         //map.setMaxZoomPreference(15);
-        //map.setMinZoomPreference(13);
+        map.setMinZoomPreference(5);
 
         float zoom = 13;
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
@@ -224,7 +226,9 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback {
                             LatLng lugarLL=null;
                             String nombreLugar="";
                             String direccion="";
-                            int currIcon=cineIcon;
+                            String img_reference="";
+                            Double valoracion=0.0;
+
 
                             try{
                                 missingValue=false;
@@ -237,6 +241,11 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback {
 
                                 direccion = placeObject.getString("formatted_address");
                                 nombreLugar=placeObject.getString("name");
+                                valoracion=placeObject.getDouble("rating");
+
+                                img_reference = placeObject.getJSONArray("photos").getJSONObject(0).getString("photo_reference");
+
+                               // Log.d("photos",img_reference);
 
                             }
                             catch(JSONException jse){
@@ -250,10 +259,21 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback {
                                 cines[i]=new MarkerOptions()
                                         .position(lugarLL)
                                         .title(nombreLugar)
-                                        .icon(BitmapDescriptorFactory.fromResource(cineIcon))
-                                        .snippet(direccion);
+                                        .icon(BitmapDescriptorFactory.fromResource(cineIcon));
+                                        //.snippet(direccion);
+
+                                InfoWindowData info=new InfoWindowData();
+                                info.setImagen("user");
+                                info.setDireccion(direccion);
+                                info.setImagen(img_reference);
+                                info.setValoracion(valoracion);
+
+                                CustomInfoWindowGoogleMap customWindow=new CustomInfoWindowGoogleMap(getContext());
+                                map.setInfoWindowAdapter(customWindow);
 
                                 marcaCines[i]=map.addMarker(cines[i]);
+                                marcaCines[i].setTag(info);
+                                marcaCines[i].showInfoWindow();
                             }
                         }
 
