@@ -64,7 +64,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback {
         //getMapAsync(this);
         // Getting Google Play availability status
         userIcon=R.drawable.user;
-        cineIcon=R.drawable.cine;
+        cineIcon=R.drawable.cinema;
 
         int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getActivity().getBaseContext());
 
@@ -200,13 +200,13 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback {
     public void actualizarLugares(final GoogleMap map){
         String placesSearchStr = "https://maps.googleapis.com/maps/api/place/textsearch/" +
                 "json?location="+mLatitude+","+mLongitude+
-                "&radius=1000&sensor=true" +
+                "&radius=500&sensor=true" +
                 "&query=cines"+
                 "&key=AIzaSyA-aKcIRzRzYbnBamLDVK2h9xPoUymqR_A";
 
        GetCines buscaCines=new GetCines(new CinesCallBack() {
            @Override
-           public void actualizar_marcadores(String respuesta) throws JSONException {
+           public void actualizar_marcadores(String respuesta) {
 
                marcaCines=new Marker[MAX_CINES];
 
@@ -218,7 +218,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback {
 
                         cines=new MarkerOptions[arrayLugares.length()];
 
-                        Log.d("tamanoArray", String.valueOf(arrayLugares.length()));
+                        //Log.d("tamanoArray", String.valueOf(arrayLugares.length()));
                         for (int i=0;i<arrayLugares.length();i++){
                             //parsear cada lugar
                             boolean missingValue=false;
@@ -262,7 +262,7 @@ public class MapasFragment extends Fragment implements OnMapReadyCallback {
                                         .icon(BitmapDescriptorFactory.fromResource(cineIcon));
                                         //.snippet(direccion);
 
-                                InfoWindowData info=new InfoWindowData();
+                                CineWindow info=new CineWindow();
                                 info.setImagen("user");
                                 info.setDireccion(direccion);
                                 info.setImagen(img_reference);

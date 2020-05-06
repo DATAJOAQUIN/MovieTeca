@@ -1,6 +1,6 @@
 package com.example.movieteca.ui.mapas;
 
-public class InfoWindowData {
+public class CineWindow {
 
     private String imagen;
     private String nombre;

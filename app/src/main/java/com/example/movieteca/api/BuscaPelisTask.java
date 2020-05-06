@@ -55,14 +55,28 @@ public class BuscaPelisTask extends AsyncTask<String,Void, Pelicula[]> {
             return null;
         }
 
-        final String BASE_URL = "https://api.themoviedb.org/3/movie/";
+        final String BASE_URL = "https://api.themoviedb.org/3/";
         final String API_KEY = "api_key";
+        Uri uri;
 
-        Uri uri = Uri.parse(BASE_URL).buildUpon()
-                .appendEncodedPath(params[0])
-                .appendQueryParameter(API_KEY, BuildConfig.THE_MOVIE_DB_API_TOKEN)
-                .appendQueryParameter("language","es-ES")
-                .build();
+        if (params[0].equals("popular")||params[0].equals("top_rated")){
+            uri = Uri.parse(BASE_URL).buildUpon()
+                    .appendEncodedPath("movie/")
+                    .appendEncodedPath(params[0])
+                    .appendQueryParameter(API_KEY, BuildConfig.THE_MOVIE_DB_API_TOKEN)
+                    .appendQueryParameter("language","es-ES")
+                    .build();
+        }else {
+            uri = Uri.parse(BASE_URL).buildUpon()
+                    .appendEncodedPath("search/movie")
+                    .appendQueryParameter("query",params[0])
+                    .appendQueryParameter(API_KEY, BuildConfig.THE_MOVIE_DB_API_TOKEN)
+                    .appendQueryParameter("language","es-ES")
+                    .build();
+
+        }
+
+
 
         String jsonString = NetworkRequest.getJsonString(uri);
 

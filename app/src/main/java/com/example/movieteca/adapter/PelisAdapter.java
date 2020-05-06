@@ -24,10 +24,12 @@ public class PelisAdapter extends RecyclerView.Adapter<PelisAdapter.PelisHolder>
     private final static String IMAGE_SIZE = "w500";
     private final Context context;
     private final List<Pelicula> movies;
+    private String menu;
 
     public PelisAdapter(Context context, List<Pelicula> movies) {
         this.context = context;
         this.movies = movies;
+
     }
 
     @NonNull
@@ -96,6 +98,7 @@ public class PelisAdapter extends RecyclerView.Adapter<PelisAdapter.PelisHolder>
                         Pelicula itemClicado=movies.get(pos);
                         Intent intent=new Intent(context, PeliDetalleActivity.class);
                         intent.putExtra("pelicula",itemClicado);
+
                         context.startActivity(intent);
                         //Toast.makeText(v.getContext(), "Has clicado " + itemClicado.getTitle(), Toast.LENGTH_SHORT).show();
                     }

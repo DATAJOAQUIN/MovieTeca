@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
     private Context context;
     private final View view;
-    private final static String BASE_IMG_URL="https://maps.googleapis.com/maps/api/place/photo?maxwidth=200";
+    private final static String BASE_IMG_URL="https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=200";
     private final static String API_KEY="AIzaSyA-aKcIRzRzYbnBamLDVK2h9xPoUymqR_A";
 
     public CustomInfoWindowGoogleMap(Context ctx){
@@ -41,11 +41,11 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
 
         nombre.setText(marker.getTitle());
 
-        InfoWindowData infoWindowData = (InfoWindowData) marker.getTag();
+        CineWindow cineWindow = (CineWindow) marker.getTag();
 
         String url = new StringBuilder()
                     .append(BASE_IMG_URL)
-                    .append("&photoreference="+infoWindowData.getImagen())
+                    .append("&photoreference="+ cineWindow.getImagen())
                     .append("&key="+API_KEY).toString();
         Log.d("FALLO",url);
 
@@ -56,9 +56,9 @@ public class CustomInfoWindowGoogleMap implements GoogleMap.InfoWindowAdapter {
                 .error(R.mipmap.ic_launcher)
                 .into(img);
 
-        direccion.setText(infoWindowData.getDireccion());
-        valoracion.setText(String.valueOf(infoWindowData.getValoracion()));
-        estrellas.setRating(Float.parseFloat(infoWindowData.getValoracion().toString()));
+        direccion.setText(cineWindow.getDireccion());
+        valoracion.setText(String.valueOf(cineWindow.getValoracion()));
+        estrellas.setRating(Float.parseFloat(cineWindow.getValoracion().toString()));
 
         return view;
     }
