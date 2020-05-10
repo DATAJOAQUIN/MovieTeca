@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -160,10 +161,10 @@ public class PeliDetalleActivity extends AppCompatActivity {
         int id = item.getItemId();
         // When the home button is pressed, take the user back to the VisualizerActivity
         if (id == android.R.id.home) {
-            //NavUtils.navigateUpFromSameTask(this);
-            onBackPressed();
-            return true;
+
+            NavUtils.navigateUpFromSameTask(this);
         }
+
 
         return super.onOptionsItemSelected(item);
     }

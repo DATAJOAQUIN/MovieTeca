@@ -84,7 +84,7 @@ public class BuscarFragment extends Fragment implements View.OnClickListener {
                     Collections.addAll(movieList, movies);
                     adapter.notifyDataSetChanged();
                 }else {
-                    recyclerView.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.INVISIBLE);
                     textoResultado.setVisibility(View.VISIBLE);
                     textoResultado.setText("No hay resultados");
                 }

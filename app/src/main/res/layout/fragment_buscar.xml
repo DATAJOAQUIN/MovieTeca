@@ -47,6 +47,7 @@
         android:id="@+id/texto_resultado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/nowifi_iv"
         android:layout_marginTop="300dp"
         android:layout_centerInParent="true"
         android:text="Página de búsqueda"
