@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "822119742043",
+    "firebase_url": "https://movieteca-5510f.firebaseio.com",
+    "project_id": "movieteca-5510f",
+    "storage_bucket": "movieteca-5510f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822119742043:android:0c4421bfa785ef85195d7e",
+        "android_client_info": {
+          "package_name": "com.example.movieteca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822119742043-j76nnslt77jhdb7mnjqqqv5cc0m277eg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPkFG1XDuO5mYuVMwdquzWmic8XdSYsuk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822119742043-j76nnslt77jhdb7mnjqqqv5cc0m277eg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

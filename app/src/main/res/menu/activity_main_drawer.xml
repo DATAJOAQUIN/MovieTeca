@@ -21,5 +21,10 @@
             android:id="@+id/nav_info"
             android:icon="@android:drawable/ic_menu_info_details"
             android:title="@string/menu_info" />
+
+        <item
+            android:id="@+id/cerrar_sesion"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="@string/menu_logout" />
     </group>
 </menu>

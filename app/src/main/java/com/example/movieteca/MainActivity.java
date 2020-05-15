@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +16,16 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity  {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private FirebaseAuth mAuth;
+    private FirebaseUser currentUser;
+    private TextView navUserName;
+    private TextView navUserMail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +40,15 @@ public class MainActivity extends AppCompatActivity  {
 
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        navUserMail = navigationView.getHeaderView(0).findViewById(R.id.user_mail);
+        navUserName = navigationView.getHeaderView(0).findViewById(R.id.user_name);
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_mapas, R.id.nav_search,R.id.nav_info)
+                R.id.nav_home, R.id.nav_mapas, R.id.nav_search,R.id.nav_info, R.id.cerrar_sesion)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -44,8 +56,13 @@ public class MainActivity extends AppCompatActivity  {
         NavigationUI.setupWithNavController(navigationView, navController);
         // Construct a GeoDataClient.
 
+        mAuth=FirebaseAuth.getInstance();
+        currentUser=mAuth.getCurrentUser();
+
+        actualizarHeader();
 
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -77,5 +94,11 @@ public class MainActivity extends AppCompatActivity  {
                 || super.onSupportNavigateUp();
     }
 
+    public void  actualizarHeader(){
 
-}
+            if(currentUser!=null){
+                   navUserMail.setText(currentUser.getEmail());
+                   navUserName.setText(currentUser.getDisplayName().toUpperCase());}
+            }
+
+    }

@@ -30,4 +30,10 @@
         android:label="@string/menu_info"
         tools:layout="@layout/fragment_infoapp" />
 
+    <fragment
+        android:id="@+id/cerrar_sesion"
+        android:name="com.example.movieteca.ui.logout.LogOut"
+        android:label="@string/menu_logout"
+         />
+
 </navigation>
