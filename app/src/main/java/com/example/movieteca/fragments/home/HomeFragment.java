@@ -1,4 +1,4 @@
-package com.example.movieteca.ui.home;
+package com.example.movieteca.fragments.home;
 
 import android.content.SharedPreferences;
 import android.content.res.Configuration;

@@ -1,4 +1,4 @@
-package com.example.movieteca.ui.info;
+package com.example.movieteca.fragments.info;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

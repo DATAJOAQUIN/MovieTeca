@@ -1,4 +1,4 @@
-package com.example.movieteca.ui.buscar;
+package com.example.movieteca.fragments.buscar;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -66,6 +66,8 @@ public class BuscarFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         String buscar= busquedaView.getText().toString();
+
+        busquedaView.setText("");
 
         buscarPeliculas(buscar);
 

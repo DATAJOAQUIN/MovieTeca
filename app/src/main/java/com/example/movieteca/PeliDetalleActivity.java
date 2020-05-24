@@ -1,5 +1,6 @@
 package com.example.movieteca;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,12 +48,12 @@ public class PeliDetalleActivity extends AppCompatActivity {
     private final static String TAMAÑO_LOGO = "w500";
 
     private TextView titulo,fecha, puntuacion, sinopsis;
-    private ImageView poster;
+    private ImageView poster, imgCurrentUser;
     private RatingBar estrellas;
     private RecyclerView trailersView;
     private List<Trailer> listaTrailer;
     private TrailersAdapter adapterTrailer;
-    private FloatingActionButton favoriteBoton;
+    private FloatingActionButton favoriteBoton,  shareButton;
 
     private  Pelicula pelicula;
     private int peliId;
@@ -90,6 +91,7 @@ public class PeliDetalleActivity extends AppCompatActivity {
         sinopsis=findViewById(R.id.overview_tv);
         poster=findViewById(R.id.moviePoster_iv);
         estrellas=findViewById(R.id.rating);
+        imgCurrentUser=findViewById(R.id.currentuser_img);
 
         favoriteBoton=findViewById(R.id.favoriteFab_id);
         favoriteBoton.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +125,7 @@ public class PeliDetalleActivity extends AppCompatActivity {
         comprobarFavorito();
         cargarTrailers(peliId);
 
+        //Parte de comentarios
         editTextComment=findViewById(R.id.peli_detail_comment);
         addComment=findViewById(R.id.add_comment_btn);
         commentsView=findViewById(R.id.comments_rv);
@@ -132,36 +135,44 @@ public class PeliDetalleActivity extends AppCompatActivity {
         firebaseUser=auth.getCurrentUser();
         firebaseDatabase=FirebaseDatabase.getInstance();
 
+        //Insertar imagen del usuario logueado en el layout de añadir comentario
+        Picasso.with(this)
+                .load(firebaseUser.getPhotoUrl())
+                .placeholder(R.drawable.user_default)
+                .error(R.mipmap.ic_launcher)
+                .into(imgCurrentUser);
+
         addComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String contenido=editTextComment.getText().toString();
-                String user_id=firebaseUser.getUid();
-                String user_name=firebaseUser.getDisplayName();
-
-                Comentario comentario=new Comentario(contenido,user_id,user_name);
-
-                DatabaseReference commentReference=firebaseDatabase.getReference("comentarios").child(String.valueOf(peliId)).push();
-
-
-                    commentReference.setValue(comentario).addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            mostrarMensaje("Añadido correctamente");
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            mostrarMensaje("Fallo al añadir comentario: "+e.getMessage());
-                        }
-                    });
+                insertarComentario();
 
             }
         });
 
         cargarComentarios();
 
+        //Funcionalidad del botón compartir
+        shareButton=findViewById(R.id.shareButton);
+        shareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                compartir();
+            }
+        });
+
+    }
+
+    private void compartir(){
+        String link="https://www.themoviedb.org/movie/"+pelicula.getMovieId()+ "?language=es-ES";
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Encontre esta peli en la app MovieTeca. "+link);
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
     }
 
     private void cargarComentarios(){
@@ -178,6 +189,8 @@ public class PeliDetalleActivity extends AppCompatActivity {
                     Comentario comentario=snap.getValue(Comentario.class);
                     commentList.add(comentario);
 
+                    //Condicion añadida para el caso de que no queramos que el usuario pueda añadir mas de un comentario
+                    //en la misma película
                     if (comentario.getUser_id().equals(firebaseUser.getUid())){
                         //addCommentLayout.setVisibility(View.GONE);
                     }
@@ -190,6 +203,31 @@ public class PeliDetalleActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+    }
+
+    private void insertarComentario(){
+        String contenido=editTextComment.getText().toString();
+        String user_id=firebaseUser.getUid();
+        String user_name=firebaseUser.getDisplayName();
+        String user_img=firebaseUser.getPhotoUrl().toString();
+        editTextComment.setText("");
+
+        Comentario comentario=new Comentario(contenido,user_id,user_name,user_img);
+
+        DatabaseReference commentReference=firebaseDatabase.getReference("comentarios").child(String.valueOf(peliId)).push();
+
+
+        commentReference.setValue(comentario).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                mostrarMensaje("Añadido correctamente");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                mostrarMensaje("Fallo al añadir comentario: "+e.getMessage());
             }
         });
     }

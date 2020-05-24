@@ -1,4 +1,4 @@
-package com.example.movieteca.ui.mapas;
+package com.example.movieteca.fragments.mapas;
 
 import android.app.Activity;
 import android.content.Context;

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity  {
 
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity  {
     private FirebaseUser currentUser;
     private TextView navUserName;
     private TextView navUserMail;
+    private ImageView navUserPhoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +44,11 @@ public class MainActivity extends AppCompatActivity  {
 
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        View headerView=navigationView.getHeaderView(0);
 
-        navUserMail = navigationView.getHeaderView(0).findViewById(R.id.user_mail);
-        navUserName = navigationView.getHeaderView(0).findViewById(R.id.user_name);
+        navUserMail = headerView.findViewById(R.id.user_mail);
+        navUserName = headerView.findViewById(R.id.user_name);
+        navUserPhoto=headerView.findViewById(R.id.user_photo);
 
 
         // Passing each menu ID as a set of Ids because each
@@ -99,6 +105,13 @@ public class MainActivity extends AppCompatActivity  {
             if(currentUser!=null){
                    navUserMail.setText(currentUser.getEmail());
                    navUserName.setText(currentUser.getDisplayName().toUpperCase());}
+
+                Picasso.with(this)
+                        .load(currentUser.getPhotoUrl())
+                        .placeholder(R.mipmap.ic_launcher_round)
+                        .error(R.mipmap.ic_launcher)
+                        .into(navUserPhoto);
             }
+
 
     }

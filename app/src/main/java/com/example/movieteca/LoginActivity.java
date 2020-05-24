@@ -67,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void mostrarMensaje(String mensaje){
-        Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_SHORT).show();
     }
 
     private void login(String mail, String password){
@@ -80,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     progressBar.setVisibility(View.GONE);
                     Intent intent=new Intent(LoginActivity.this, MainActivity.class);
+                    finish();
                     startActivity(intent);
                     mostrarMensaje("Login correcto");
 

@@ -4,18 +4,28 @@ import com.google.firebase.database.ServerValue;
 
 public class Comentario {
 
-    private String contenido, user_id,user_name;
+    private String contenido, user_id,user_name, user_img;
     private Object timestamp;
+
+    public String getUser_img() {
+        return user_img;
+    }
+
+    public void setUser_img(String user_img) {
+        this.user_img = user_img;
+    }
 
     public Comentario() {
     }
 
-    public Comentario(String contenido, String user_id, String user_name) {
+    public Comentario(String contenido, String user_id, String user_name, String user_img) {
         this.contenido = contenido;
         this.user_id = user_id;
         this.user_name = user_name;
+        this.user_img = user_img;
         this.timestamp = ServerValue.TIMESTAMP;
     }
+
 
     public String getContenido() {
         return contenido;

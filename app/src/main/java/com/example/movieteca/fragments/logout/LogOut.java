@@ -1,4 +1,4 @@
-package com.example.movieteca.ui.logout;
+package com.example.movieteca.fragments.logout;
 
 import android.content.Intent;
 import android.os.Bundle;
